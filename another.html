@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>欢迎注册会员</h3>
+    <form action="">
+        手机号码：
+            <input type="text" name="username" value=""  placeholder="11位手机号">
+            <br>
+        创建密码：
+            <input type="password" name="passwords" value=""  placeholder="8位密码">
+            <br>
+        注册邮箱：
+            <input type="password" name="address" value=""  placeholder="例如：wust@.com">
+            <br>
+        验证码：
+            <input type="password" name="rnumber" value=""  placeholder="">
+            <br>
+        性别：
+            <input type="radio" name="sex" value="male" checked="checked"> 男
+            <input type="radio" name="sex" value="female"> 女
+            <br>
+        生日：
+            <input type="text" name="number" value=""  placeholder="年/月/日">
+            <br>
+        年龄：
+            <input type="text" name="number" value=""  placeholder="">
+            <br>
+        籍贯；
+            <select name="province">
+                <option value="0"selected="selected">湖北省</option>
+                <option value="1">湖南省</option>
+                <option value="2">上海市</option>
+            </select>
+            <select name="again">
+                <option value="0"selected="selected">武汉</option>
+                <option value="1">孝感</option>
+                <option value="2">宜昌</option>
+            </select>
+            <br>
+        个人学历：
+            <select name="major">
+                <option value="0"selected="selected">计算机科学与技术</option>
+                <option value="1">软件工程</option>
+                <option value="2">网络工程</option>
+            </select>
+            <br>
+        月薪：
+            <input type="range" id="money" name="money" min="0" max="10000" step="100" value="3000" >
+            <span id="msg">3000</span>               
+            <br>
+        个人爱好：
+            <input type="checkbox">唱跳&nbsp;&nbsp;&nbsp;<input type="checkbox">rap&nbsp;&nbsp;&nbsp;<input type="checkbox">篮球
+            <br>
+        个人照片：
+            <input type="file" name="myfile" accept="文件类型">
+            <br>
+        个人简介：
+            <br>
+            <textarea name="intro" cols="20" rows="10">请填写个人简历</textarea>
+            <br>
+        <input type="submit" value="提交">
+        <input type="reset" value="重填">            
+    </form>
+    <script>
+        var msg = document.getElementById("msg"); // 根据id值找到span元素
+        window.onload = function () { 
+        msg.innerHTML = document.getElementById("money").value; // 获取区间域初始value值
+        }
+        document.getElementById("money").onchange = function () { 
+        msg.innerHTML = this.value; // 将当前区间域的value作为span元素的内容
+        }
+    </script> 
+</body>
+</html>
