@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .box{
+            width: 350px;
+            height: atuo;
+            border: 3px solid black;
+            padding: 15px;
+        }
+        #birthplace select{
+            width:80px;
+        }
+        #education select{
+            width:160px;
+        }
+        #introduce label{
+            position: relative;
+            bottom: 70px;
+        }
+        #cz input{
+            display: inline-block;
+            position: relative;
+            left: 85px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h3>欢迎注册会员</h3>
+        <form action="" method="get">
+            <div id="phnum">
+                <label for="phonenumber">手机号码:</label>
+                <input type="text" name="phonenumber" value=""  placeholder="11位手机号">
+                <span style="color: red">必填</span>
+            </div>
+            <div id="paword">
+                <label for="password">创建密码:</label>
+                <input type="password" name="passwords" value=""  placeholder="8位密码">
+                <span style="color: red">必填</span>
+            </div>
+            <div id="email">
+                <label for="email">注册邮箱:</label>
+                <input type="password" name="address" value=""  placeholder="例如：wust@.com">
+                <span style="color: red">必填</span>
+            </div>
+            <div id="yzm">
+                <label for="yzm">验证码:</label>
+                <input type="password" name="rnumber" value=""  placeholder="">
+                <span id="capcha"></span>
+                <img src="images\2.gif" id="change_capcha" height="20" width="20">
+            </div>
+            <div id="sex">
+                <label for="sex">性别:</label>
+                <input type="radio" name="sex" value="male" checked="checked"> 男
+                <input type="radio" name="sex" value="female"> 女
+            </div>
+            <div id="birthday">
+                <label for="birthday">生日:</label>
+                <input type="text" name="number" value=""  placeholder="年/月/日">
+            </div>
+            <div id="age">
+                <label for="age">年龄:</label>
+                <input type="text" name="number" value=""  placeholder="">
+            </div>
+            <div id="birthplace">
+                <label for="birthplace">籍贯:</label>
+                <select name="province">
+                    <option value="0"selected="selected">湖北省</option>
+                    <option value="1">湖南省</option>
+                    <option value="2">上海市</option>
+                </select>
+                <select name="again">
+                    <option value="0"selected="selected">武汉</option>
+                    <option value="1">孝感</option>
+                    <option value="2">宜昌</option>
+                </select>
+            </div>
+            <div id="education">
+                <label for="education">个人学历:</label>
+                <select name="major">
+                    <option value="0"selected="selected">计算机科学与技术</option>
+                    <option value="1">软件工程</option>
+                    <option value="2">网络工程</option>
+                </select>
+            </div>
+            <div id="input">
+                <label for="input">月薪:</label>
+                <input type="range" id="money" name="money" min="0" max="16000" step="80" value="3200" >
+                <span id="msg">3000</span> 
+            </div>
+            <div id="hobby">
+                <label for="hobby">个人爱好:</label>
+                <input type="checkbox">唱跳&nbsp;&nbsp;&nbsp;<input type="checkbox">rap&nbsp;&nbsp;&nbsp;<input type="checkbox">篮球
+            </div>
+            <div id="photo">
+                <label for="photo">个人照片:</label>
+                <input type="file" name="myfile" accept="文件类型">
+            </div>  
+            <div id="introduce">
+                <label for="">个人简介:</label>
+                <textarea name="intro" cols="20" rows="10"  placeholder="请填写个人简历"></textarea>
+            </div>   
+            <div id="cz">
+                <input type="submit" value="提交">
+                <input type="reset" value="重填">  
+            </div>                  
+        </form>
+    </div>
+    <script>
+        var msg = document.getElementById("msg"); // 根据id值找到span元素
+        window.onload = function () { 
+        msg.innerHTML = document.getElementById("money").value; // 获取区间域初始value值
+        }
+        document.getElementById("money").onchange = function () { 
+        msg.innerHTML = this.value; // 将当前区间域的value作为span元素的内容
+        }
+    </script> 
+    <script>
+        let codeStr =
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //验证码长度
+        let length = 4;
+        let capcha = document.getElementById("capcha");
+        let change_capcha = document.getElementById("change_capcha");
+        // 用来生成一个[n,m]随机整数
+        function getRandom(n, m) {
+          return parseInt(Math.random() * (m - n + 1) + n);
+        }
+        // 将随机生成的整数下标对应的字母放入span中
+        function getCode() {
+          let str = "";
+          // 验证码有几位就循环几次
+          for (let i = 0; i < length; i++) {
+            let index = getRandom(0, 51);
+            str += codeStr.charAt(index);
+          }
+          capcha.innerHTML = str;
+        }
+        // 页面初始加载时就调用函数生成验证码，页面刷新也会执行
+        getCode();
+        capcha.addEventListener("click", getCode);
+        change_capcha.addEventListener("click", getCode);
+      </script>
+</body>
+</html>
